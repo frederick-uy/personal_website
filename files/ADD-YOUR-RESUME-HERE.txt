@@ -1,0 +1,3 @@
+Put your résumé in this folder named exactly:  frederick-uy-resume.pdf
+The "Download résumé" buttons on the Work page link to it.
+You can delete this text file afterwards.
