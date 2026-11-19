@@ -34,7 +34,8 @@ def url_for(path: str) -> str:
 def fetch(path: str, tries: int = 4) -> bytes:
     for i in range(tries):
         try:
-            with urllib.request.urlopen(url_for(path), timeout=120) as r:
+            req = urllib.request.Request(url_for(path), headers={"User-Agent": "curl/8 (site-migration)"})
+            with urllib.request.urlopen(req, timeout=120) as r:
                 return r.read()
         except Exception as e:  # retry flaky shared hosting
             if i == tries - 1:
@@ -80,7 +81,7 @@ def work(path: str):
 def main() -> None:
     manifest = fetch("_manifest.txt").decode().split("\n")
     manifest = [p for p in manifest if p and p != "_manifest.txt"]
-    print(f"{len(manifest)} files to copy")
+    print(f"{len(manifest)} files to copy", flush=True)
     tot_in = tot_out = 0
     skipped, failed = [], []
     with cf.ThreadPoolExecutor(max_workers=12) as ex:
