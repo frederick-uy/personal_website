@@ -18,8 +18,9 @@ git checkout -q main
 git reset -q --hard origin/main
 
 echo "==> Downloading and shrinking files"
-rm -rf /tmp/site
+mkdir -p /tmp/site  # keep earlier downloads so a rerun resumes
 python3 /tmp/migrate_wordpress.py "$SHARE_URL" /tmp/site
+find /tmp/site -name "*.part" -delete
 
 echo "==> Replacing main's files with the WordPress copy"
 git rm -rq --ignore-unmatch .

@@ -14,6 +14,7 @@ import concurrent.futures as cf
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -23,6 +24,8 @@ MAX_SIDE = 2000          # px, longest side for photos
 JPEG_QUALITY = 82
 SHRINK_OVER = 400_000    # only touch images bigger than this (bytes)
 HARD_LIMIT = 25 * 1024 * 1024  # Cloudflare Pages per-file limit
+WORKERS = 3              # Hostinger throttles parallel downloads
+PAUSE = 0.15             # seconds between requests per worker
 
 BASE, OUT = sys.argv[1].rstrip("/"), sys.argv[2]
 
@@ -31,16 +34,29 @@ def url_for(path: str) -> str:
     return BASE + "/" + urllib.parse.quote(path)
 
 
-def fetch(path: str, tries: int = 4) -> bytes:
+def fetch(path: str, tries: int = 40) -> bytes:
+    """Download politely: Hostinger rate-limits (HTTP 429), so back off and retry."""
+    wait = 15
     for i in range(tries):
         try:
             req = urllib.request.Request(url_for(path), headers={"User-Agent": "curl/8 (site-migration)"})
-            with urllib.request.urlopen(req, timeout=120) as r:
-                return r.read()
-        except Exception as e:  # retry flaky shared hosting
-            if i == tries - 1:
+            with urllib.request.urlopen(req, timeout=180) as r:
+                data = r.read()
+            time.sleep(PAUSE)
+            return data
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 503, 508) and i < tries - 1:
+                ra = e.headers.get("Retry-After")
+                delay = int(ra) if ra and ra.isdigit() else wait
+                print(f"  rate-limited ({e.code}), waiting {delay}s", flush=True)
+                time.sleep(delay)
+                wait = min(wait * 2, 300)
+                continue
+            raise RuntimeError(f"{path}: HTTP {e.code}")
+        except Exception as e:
+            if i >= 5:
                 raise RuntimeError(f"{path}: {e}")
-            time.sleep(2 * (i + 1))
+            time.sleep(5 * (i + 1))
 
 
 def shrink(dest: str) -> None:
@@ -62,12 +78,17 @@ def shrink(dest: str) -> None:
 
 def work(path: str):
     dest = os.path.join(OUT, path)
+    if os.path.exists(dest):  # resume: already downloaded (and shrunk) in an earlier run
+        size = os.path.getsize(dest)
+        return path, size, size, "ok"
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     data = fetch(path)
-    with open(dest, "wb") as f:
+    tmp = dest + ".part"
+    with open(tmp, "wb") as f:
         f.write(data)
     before = len(data)
     try:
+        os.replace(tmp, dest)
         shrink(dest)
     except Exception as e:
         print(f"  ! could not shrink {path}: {e}")
@@ -84,7 +105,7 @@ def main() -> None:
     print(f"{len(manifest)} files to copy", flush=True)
     tot_in = tot_out = 0
     skipped, failed = [], []
-    with cf.ThreadPoolExecutor(max_workers=12) as ex:
+    with cf.ThreadPoolExecutor(max_workers=WORKERS) as ex:
         futs = {ex.submit(work, p): p for p in manifest}
         for n, fut in enumerate(cf.as_completed(futs), 1):
             try:
