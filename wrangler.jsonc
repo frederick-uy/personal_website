@@ -1,0 +1,11 @@
+// Cloudflare config: serve the repo root as a static site.
+{
+  "name": "personal-website",
+  "compatibility_date": "2026-11-18",
+  "assets": {
+    "directory": ".",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "previews": {}
+}
