@@ -7,6 +7,7 @@
 /services-pricing/        /photography/      301
 /portfolio                /photography/      301
 /portfolio/*              /photography/      301
+/blog/conferences-and-events-for-latinx-student-entrepreneurs   /journal/latinx-conferences/  301
 /blog/conferences-and-events-for-latinx-student-entrepreneurs/  /journal/latinx-conferences/  301
 /blog                     /journal/          301
-/blog/*                   /journal/          301
+/blog/*                   /journal/          302
