@@ -1,0 +1,16 @@
+# Old WordPress addresses -> new pages
+/about-me                 /about/            301
+/about-me/                /about/            301
+/contact-me               /contact/          301
+/contact-me/              /contact/          301
+/services-pricing         /photography/      301
+/services-pricing/        /photography/      301
+/portfolio                /photography/      301
+/portfolio/*              /photography/      301
+/blog/conferences-and-events-for-latinx-student-entrepreneurs/  /journal/latinx-conferences/  301
+/blog                     /journal/          301
+/blog/*                   /journal/          301
+/_src/*                   /404.html          404
+/content/*                /404.html          404
+/tools/*                  /404.html          404
+/README.md                /404.html          404

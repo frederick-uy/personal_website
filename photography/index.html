@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photography · FMU Photography</title>
+<meta name="description" content="Portraits, graduations and proposals around Tacoma and Seattle. Natural light, real moments.">
+<link rel="canonical" href="https://frederickuy.com/photography/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Frederick Uy">
+<meta property="og:title" content="Photography · FMU Photography">
+<meta property="og:description" content="Portraits, graduations and proposals around Tacoma and Seattle. Natural light, real moments.">
+<meta property="og:url" content="https://frederickuy.com/photography/">
+<meta property="og:image" content="https://frederickuy.com/images/gallery/portrait-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Caveat:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1C1B19;color:#EDE8DF;font-family:Inter,system-ui,sans-serif}
+a{color:#E3A876}a:hover{color:#F2C49C}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;margin:0;letter-spacing:-0.01em}
+p{margin:0}
+.wrap{max-width:1360px;margin:0 auto;padding:0 48px;box-sizing:border-box}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.hand{font-family:Caveat,cursive;font-size:24px;color:#E3A876;line-height:1.1}
+.strip{background:#0F0E0D;border-radius:4px;padding:30px 18px;position:relative}
+.strip::before,.strip::after{content:"";position:absolute;left:12px;right:12px;height:10px;background:repeating-linear-gradient(90deg,#3A3732 0 14px,transparent 14px 30px);border-radius:2px}
+.strip::before{top:10px}.strip::after{bottom:10px}
+.frames{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.frame{display:flex;flex-direction:column;gap:8px;position:relative}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .3s ease}
+.frame:hover img{transform:scale(1.02);filter:brightness(1.05)}
+.wide img{aspect-ratio:3/2}
+.circle{position:absolute;inset:-8px -6px 22px -6px;border:2.5px solid #E3A876;border-radius:46% 54% 50% 48%;transform:rotate(-2deg);pointer-events:none}
+.prices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#3A3732;border:1px solid #3A3732;border-radius:4px;overflow:hidden}
+.nav a{color:#EDE8DF;text-decoration:none;font-size:15px}
+@media (max-width:860px){.steps{grid-template-columns:repeat(2,minmax(0,1fr)) !important}#faq .wrap{grid-template-columns:minmax(0,1fr) !important}.quotes{grid-template-columns:minmax(0,1fr) !important}.quote{margin-top:0 !important}.frames,.prices{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:0 20px}}
+html{scroll-behavior:smooth}
+a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ease,opacity .2s ease,transform .2s ease}
+button{-webkit-tap-highlight-color:transparent}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+:focus-visible{outline:2px solid #A5521E;outline-offset:3px;border-radius:4px}
+.fade{animation:fadeUp .4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+img{transition:opacity .3s ease}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+details[open] summary span{transform:rotate(45deg)}
+summary span{transition:transform .2s ease}
+summary::-webkit-details-marker{display:none}
+.masonry{columns:4 260px;column-gap:14px}
+.masonry img{width:100%;display:block;margin:0 0 14px;border-radius:3px;break-inside:avoid;background:#262421}
+.pick{position:relative}
+.pick-btn{font:inherit;font-size:16px;font-weight:600;color:#1C1B19;background:#E3A876;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;min-height:46px;display:inline-flex;align-items:center;gap:12px;min-width:170px;justify-content:space-between}
+.pick-btn:hover{background:#EDB98B}
+.caret{display:inline-block;transition:transform .2s ease}
+.pick-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:5;background:#262421;border:1px solid #3A3732;border-radius:10px;padding:6px;min-width:200px;box-shadow:0 14px 30px rgba(0,0,0,.4);display:flex;flex-direction:column;animation:fadeUp .2s ease both}
+.pick-menu button{font:inherit;font-size:15px;text-align:left;border:0;border-radius:6px;padding:11px 14px;cursor:pointer}
+.pick-menu button:hover{background:#3A3732 !important}
+.ig{color:#EDE8DF;text-decoration:none;border:1px solid #4A4640;border-radius:999px;padding:11px 18px;font-size:15px}
+.ig:hover{border-color:#E3A876;color:#E3A876}
+.tile{display:block;width:100%;padding:0;margin:0 0 14px;border:0;background:none;cursor:zoom-in;break-inside:avoid;border-radius:3px;overflow:hidden}
+.tile img{margin:0;transition:transform .35s ease,opacity .35s ease}
+.tile:hover img{transform:scale(1.03);opacity:.92}
+.tile:focus-visible{outline:2px solid #E3A876;outline-offset:3px}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(14,13,12,.95);display:flex;align-items:center;justify-content:center;padding:56px 88px;box-sizing:border-box}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lbb{position:absolute;background:rgba(244,239,230,.08);color:#F4EFE6;border:1px solid rgba(244,239,230,.25);border-radius:999px;width:52px;height:52px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lbb:hover{background:rgba(244,239,230,.18)}
+@media (max-width:700px){.lb{padding:56px 12px}.lbb.prev{left:8px !important}.lbb.next{right:8px !important}}
+</style>
+</head>
+<body>
+<div id="dc-root"><div style="min-height: 100vh; width: 100%">
+
+<div style="border-bottom: 1px solid #3A3732">
+<header class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px">
+<a href="/" style="font-family: Fraunces, Georgia, serif; font-size: 26px; color: #EDE8DF; text-decoration: none">Frederick Uy</a>
+<nav class="nav" aria-label="Main" style="display: flex; gap: 28px; flex-wrap: wrap; align-items: center">
+<a href="/">Home</a>
+<a href="/about/">About</a>
+<a href="/work/">Work</a>
+<a href="/photography/" style="color: #E3A876; text-decoration: underline; text-underline-offset: 6px">Photography</a>
+<a href="/journal/">Journal</a>
+<a href="#book" style="background: #E3A876; color: #1C1B19; padding: 11px 17px; border-radius: 999px; font-weight: 600">Book a session</a>
+</nav>
+</header>
+</div>
+
+<section style="background: #24221F">
+<div class="wrap" style="padding-top: 56px; padding-bottom: 66px">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p class="mono" style="color: #E3A876">FMU Photography</p>
+<h1 style="font-size: clamp(42px, 5vw, 68px); line-height: 1.05; color: #F4EFE6">Real moments, in natural light.</h1>
+<p style="font-size: 19px; line-height: 1.7; color: #CFC8BC; max-width: 600px">Portraits, graduations and proposals around Tacoma and Seattle. Lots of first-timers book with me, so I guide you with prompts, and the photos come out natural rather than stiff.</p>
+</div>
+</div>
+</section>
+
+<section id="full" style="background: #1C1B19">
+<div class="wrap" style="padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 40px; color: #F4EFE6">Portraits</h2>
+</div>
+<div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
+<span class="mono" style="color: #9C958A">Show</span>
+<div class="pick">
+<button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" data-on-click="0">Portraits <span aria-hidden="true" class="caret" style="">▾</span></button>
+
+</div>
+<a href="https://www.instagram.com/fmu_photography/" target="_blank" rel="noopener" class="ig">More on Instagram · @fmu_photography ↗</a>
+</div>
+</div>
+<div class="masonry">
+
+<button class="tile" data-on-click="1" aria-label="View Portraits photo 1 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-01.jpg" alt="Portraits photo 1 by FMU Photography" loading="lazy" style="aspect-ratio: 1.498"></button>
+
+<button class="tile" data-on-click="2" aria-label="View Portraits photo 2 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-02.jpg" alt="Portraits photo 2 by FMU Photography" loading="lazy" style="aspect-ratio: 0.699"></button>
+
+<button class="tile" data-on-click="3" aria-label="View Portraits photo 3 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-03.jpg" alt="Portraits photo 3 by FMU Photography" loading="lazy" style="aspect-ratio: 0.722"></button>
+
+<button class="tile" data-on-click="4" aria-label="View Portraits photo 4 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-04.jpg" alt="Portraits photo 4 by FMU Photography" loading="lazy" style="aspect-ratio: 0.691"></button>
+
+<button class="tile" data-on-click="5" aria-label="View Portraits photo 5 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-05.jpg" alt="Portraits photo 5 by FMU Photography" loading="lazy" style="aspect-ratio: 0.848"></button>
+
+<button class="tile" data-on-click="6" aria-label="View Portraits photo 6 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-06.jpg" alt="Portraits photo 6 by FMU Photography" loading="lazy" style="aspect-ratio: 0.668"></button>
+
+<button class="tile" data-on-click="7" aria-label="View Portraits photo 7 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-07.jpg" alt="Portraits photo 7 by FMU Photography" loading="lazy" style="aspect-ratio: 1.498"></button>
+
+<button class="tile" data-on-click="8" aria-label="View Portraits photo 8 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-08.jpg" alt="Portraits photo 8 by FMU Photography" loading="lazy" style="aspect-ratio: 0.726"></button>
+
+<button class="tile" data-on-click="9" aria-label="View Portraits photo 9 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-09.jpg" alt="Portraits photo 9 by FMU Photography" loading="lazy" style="aspect-ratio: 1.187"></button>
+
+<button class="tile" data-on-click="10" aria-label="View Portraits photo 10 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-10.jpg" alt="Portraits photo 10 by FMU Photography" loading="lazy" style="aspect-ratio: 1.5"></button>
+
+<button class="tile" data-on-click="11" aria-label="View Portraits photo 11 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-11.jpg" alt="Portraits photo 11 by FMU Photography" loading="lazy" style="aspect-ratio: 1.498"></button>
+
+<button class="tile" data-on-click="12" aria-label="View Portraits photo 12 by FMU Photography larger"><img class="fade" src="/images/gallery/portrait-12.jpg" alt="Portraits photo 12 by FMU Photography" loading="lazy" style="aspect-ratio: 0.667"></button>
+
+</div>
+</div>
+</section>
+
+<section id="process" style="background: #24221F">
+<div class="wrap" style="padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 40px; color: #F4EFE6">From first message to finished gallery</h2>
+</div>
+<div class="steps" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px"><span class="mono" style="color: #E3A876">01</span><h3 style="font-size: 24px; color: #F4EFE6">Plan</h3><p style="font-size: 16px; line-height: 1.65; color: #CFC8BC">We pick a spot and a time with good light, and I send a few ideas for what to wear.</p></div>
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px"><span class="mono" style="color: #E3A876">02</span><h3 style="font-size: 24px; color: #F4EFE6">Shoot</h3><p style="font-size: 16px; line-height: 1.65; color: #CFC8BC">Relaxed and fun: music, conversation, and easy prompts so nobody has to fake a smile.</p></div>
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px"><span class="mono" style="color: #E3A876">03</span><h3 style="font-size: 24px; color: #F4EFE6">Edit</h3><p style="font-size: 16px; line-height: 1.65; color: #CFC8BC">I hand-pick and edit every photo in my natural, warm style.</p></div>
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px"><span class="mono" style="color: #E3A876">04</span><h3 style="font-size: 24px; color: #F4EFE6">Deliver</h3><p style="font-size: 16px; line-height: 1.65; color: #CFC8BC">You get an online gallery in 5 days, ready to download and share.</p></div>
+</div>
+</div>
+</section>
+
+<section id="kind-words" style="background: #1C1B19">
+<div class="wrap" style="padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 40px; color: #F4EFE6">What people say</h2>
+</div>
+<div class="quotes" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start">
+<figure class="quote" style="margin: 0; margin-top: 0; background: #F4EFE6; color: #26231F; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><span aria-hidden="true" style="font-family: Fraunces, Georgia, serif; font-size: 64px; line-height: .6; color: #A5521E">“</span><blockquote style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 21px; line-height: 1.5">Frederick has an incredible eye for detail and a talent for capturing moments that feel both natural and deeply meaningful. His ability to play with light, composition, and emotion makes every shot a true work of art.</blockquote><figcaption style="display: flex; align-items: center; gap: 10px"><span style="width: 24px; height: 2px; background: #A5521E"></span><span class="mono" style="color: #26231F">Cherry Knox</span><span aria-label="5 stars" style="color: #A5521E; letter-spacing: 2px; margin-left: auto">★★★★★</span></figcaption></figure>
+<figure class="quote" style="margin: 0; margin-top: 48px; background: #E3A876; color: #1C1B19; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><span aria-hidden="true" style="font-family: Fraunces, Georgia, serif; font-size: 64px; line-height: .6; color: #1C1B19">“</span><blockquote style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 21px; line-height: 1.5">Frederick is an amazing photographer who really knows how to guide you, especially if you’re a beginner. He made me feel comfortable with easy-to-follow prompts and poses, helping me look my best in every shot.</blockquote><figcaption style="display: flex; align-items: center; gap: 10px"><span style="width: 24px; height: 2px; background: #1C1B19"></span><span class="mono" style="color: #1C1B19">Taylor Johnson</span><span aria-label="5 stars" style="color: #1C1B19; letter-spacing: 2px; margin-left: auto">★★★★★</span></figcaption></figure>
+<figure class="quote" style="margin: 0; margin-top: 0; background: #F4EFE6; color: #26231F; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><span aria-hidden="true" style="font-family: Fraunces, Georgia, serif; font-size: 64px; line-height: .6; color: #A5521E">“</span><blockquote style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 21px; line-height: 1.5">Working with Frederick was an incredible experience—he made us feel comfortable and brought out the best in every moment. The photos turned out stunning, capturing the essence of the day perfectly!</blockquote><figcaption style="display: flex; align-items: center; gap: 10px"><span style="width: 24px; height: 2px; background: #A5521E"></span><span class="mono" style="color: #26231F">Rachel Kay</span><span aria-label="5 stars" style="color: #A5521E; letter-spacing: 2px; margin-left: auto">★★★★★</span></figcaption></figure>
+</div>
+</div>
+</section>
+
+<section id="book" style="background: #24221F; color: #EDE8DF">
+<div class="wrap" style="padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 40px; color: #F4EFE6">Simple pricing, edited photos included</h2>
+</div>
+<div class="prices">
+<div style="background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px"><p class="mono" style="color: #9C958A">Outdoor portraits</p><p style="font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6">$120</p><p style="font-size: 14px; line-height: 1.7; color: #CFC8BC">30–45 min · 15+ photos<br>$170 with a partner</p></div>
+<div style="background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px"><p class="mono" style="color: #9C958A">Graduation</p><p style="font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6">$100</p><p style="font-size: 14px; line-height: 1.7; color: #CFC8BC">45 min – 1 hr · 20+ photos<br>+$40 per extra grad</p></div>
+<div style="background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px"><p class="mono" style="color: #9C958A">Family (3–5)</p><p style="font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6">$200</p><p style="font-size: 14px; line-height: 1.7; color: #CFC8BC">1 hour · 25+ photos</p></div>
+<div style="background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px"><p class="mono" style="color: #9C958A">Proposals &amp; weddings</p><p style="font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6">$500+</p><p style="font-size: 14px; line-height: 1.7; color: #CFC8BC">Custom coverage<br>Planning call included</p></div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border-top: 1px solid #3A3732; padding-top: 28px">
+<p style="font-size: 17px; color: #CFC8BC; max-width: 640px">Not sure which session fits? Send a note and we’ll figure it out together.</p>
+<a href="/contact/" style="background: #E3A876; color: #1C1B19; text-decoration: none; padding: 15px 26px; border-radius: 999px; font-weight: 600">Check availability</a>
+</div>
+</div>
+</section>
+
+<section id="faq" style="background: #1C1B19">
+<div class="wrap" style="padding-top: 80px; padding-bottom: 80px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: start" >
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 40px; color: #F4EFE6">Good to know</h2>
+</div>
+<div style="border-top: 1px solid #3A3732">
+<details style="border-bottom: 1px solid #3A3732; padding: 20px 0"><summary style="cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px">First time in front of a camera?<span aria-hidden="true" style="color: #E3A876">+</span></summary><p style="padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC">You’re in good company. I’ll guide you through every pose.</p></details>
+<details style="border-bottom: 1px solid #3A3732; padding: 20px 0"><summary style="cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px">Where do you shoot?<span aria-hidden="true" style="color: #E3A876">+</span></summary><p style="padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC">Around Tacoma and Seattle. Travel outside the area on request.</p></details>
+<details style="border-bottom: 1px solid #3A3732; padding: 20px 0"><summary style="cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px">What if it rains?<span aria-hidden="true" style="color: #E3A876">+</span></summary><p style="padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC">Light rain can be beautiful, so if you’re up for it, I’ll bring umbrellas and we’ll lean into the mood. If it’s pouring or you’d rather stay dry, we’ll reschedule for free to the next day that works for both of us.</p></details>
+<details style="border-bottom: 1px solid #3A3732; padding: 20px 0"><summary style="cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px">Can I bring a partner or friends?<span aria-hidden="true" style="color: #E3A876">+</span></summary><p style="padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC">Yes. Add a partner for $50, or book a family session for 3–5 people.</p></details>
+</div>
+</div>
+</section>
+
+<footer class="wrap" style="border-top: 1px solid #3A3732; padding-top: 32px; padding-bottom: 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #9C958A">
+<span>© 2026 Frederick Uy · Tacoma, WA</span>
+<span style="display: flex; gap: 20px; flex-wrap: wrap"><a href="https://www.linkedin.com/in/frederickuy/">LinkedIn</a><a href="https://www.instagram.com/frederick.uy">Instagram</a><a href="https://frederick-uy.medium.com/">Medium</a><a href="/contact/">Contact</a></span>
+</footer>
+
+
+</div></div>
+<script src="/assets/runtime.js"></script>
+<script>
+var DCLogic = DC.DCLogic;
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { gal: 'portrait', lb: -1 };
+    window.addEventListener('keydown', (e) => { if (this.state.lb < 0) return; const n = this._n || 1; if (e.key === 'Escape') this.setState({ lb: -1 }); if (e.key === 'ArrowRight') this.setState({ lb: (this.state.lb + 1) % n }); if (e.key === 'ArrowLeft') this.setState({ lb: (this.state.lb - 1 + n) % n }); });
+  }
+  renderVals() {
+    const GAL = {"portrait": [{"src": "/images/gallery/portrait-01.jpg", "r": 1.498}, {"src": "/images/gallery/portrait-02.jpg", "r": 0.699}, {"src": "/images/gallery/portrait-03.jpg", "r": 0.722}, {"src": "/images/gallery/portrait-04.jpg", "r": 0.691}, {"src": "/images/gallery/portrait-05.jpg", "r": 0.848}, {"src": "/images/gallery/portrait-06.jpg", "r": 0.668}, {"src": "/images/gallery/portrait-07.jpg", "r": 1.498}, {"src": "/images/gallery/portrait-08.jpg", "r": 0.726}, {"src": "/images/gallery/portrait-09.jpg", "r": 1.187}, {"src": "/images/gallery/portrait-10.jpg", "r": 1.5}, {"src": "/images/gallery/portrait-11.jpg", "r": 1.498}, {"src": "/images/gallery/portrait-12.jpg", "r": 0.667}], "graduation": [{"src": "/images/gallery/graduation-01.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-02.jpg", "r": 0.632}, {"src": "/images/gallery/graduation-03.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-04.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-05.jpg", "r": 1.5}, {"src": "/images/gallery/graduation-06.jpg", "r": 0.707}, {"src": "/images/gallery/graduation-07.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-08.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-09.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-10.jpg", "r": 0.667}, {"src": "/images/gallery/graduation-11.jpg", "r": 0.652}, {"src": "/images/gallery/graduation-12.jpg", "r": 1.5}], "street": [{"src": "/images/gallery/street-01.jpg", "r": 0.668}, {"src": "/images/gallery/street-02.jpg", "r": 1.372}, {"src": "/images/gallery/street-03.jpg", "r": 0.638}, {"src": "/images/gallery/street-04.jpg", "r": 1.5}, {"src": "/images/gallery/street-05.jpg", "r": 1.5}, {"src": "/images/gallery/street-06.jpg", "r": 1.5}, {"src": "/images/gallery/street-07.jpg", "r": 0.709}, {"src": "/images/gallery/street-08.jpg", "r": 1.498}, {"src": "/images/gallery/street-09.jpg", "r": 1.5}, {"src": "/images/gallery/street-10.jpg", "r": 0.703}, {"src": "/images/gallery/street-11.jpg", "r": 0.69}, {"src": "/images/gallery/street-12.jpg", "r": 1.5}], "landscape": [{"src": "/images/gallery/landscape-01.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-02.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-03.jpg", "r": 1.461}, {"src": "/images/gallery/landscape-04.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-05.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-06.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-07.jpg", "r": 0.667}, {"src": "/images/gallery/landscape-08.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-09.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-10.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-11.jpg", "r": 1.5}, {"src": "/images/gallery/landscape-12.jpg", "r": 1.503}], "nature": [{"src": "/images/gallery/nature-01.jpg", "r": 0.561}, {"src": "/images/gallery/nature-02.jpg", "r": 0.668}, {"src": "/images/gallery/nature-03.jpg", "r": 1.498}, {"src": "/images/gallery/nature-04.jpg", "r": 1.435}, {"src": "/images/gallery/nature-05.jpg", "r": 0.667}, {"src": "/images/gallery/nature-06.jpg", "r": 1.5}, {"src": "/images/gallery/nature-07.jpg", "r": 0.76}, {"src": "/images/gallery/nature-08.jpg", "r": 0.667}, {"src": "/images/gallery/nature-09.jpg", "r": 1.37}, {"src": "/images/gallery/nature-10.jpg", "r": 0.667}, {"src": "/images/gallery/nature-11.jpg", "r": 1.498}, {"src": "/images/gallery/nature-12.jpg", "r": 1.498}]};
+    const LABELS = {"portrait": "Portraits", "graduation": "Graduation", "street": "Street", "landscape": "Landscape", "nature": "Nature"};
+    const gc = this.state.gal || 'portrait';
+    const galItems = GAL[gc].map((g, n) => ({ src: g.src, alt: LABELS[gc] + ' photo ' + (n + 1) + ' by FMU Photography', style: 'aspect-ratio: ' + g.r, open: () => this.setState({ lb: n }) }));
+    const N = galItems.length; this._n = N; const lb = this.state.lb;
+    const lbOpen = lb >= 0 && lb < N; const cur = lbOpen ? galItems[lb] : galItems[0];
+    const step = (d) => (e) => { if (e) e.stopPropagation(); this.setState({ lb: (lb + d + N) % N }); };
+    const galOpen = !!this.state.galOpen;
+    const galOpts = Object.keys(LABELS).map(k => ({ label: LABELS[k], sel: k === gc ? 'true' : 'false', pick: () => this.setState({ gal: k, galOpen: false, lb: -1 }), style: 'color: ' + (k === gc ? '#E3A876' : '#EDE8DF') + '; background: ' + (k === gc ? '#1C1B19' : 'transparent') }));
+    return { galItems, galTitle: LABELS[gc], galOpen, galOpenStr: galOpen ? 'true' : 'false', caretStyle: galOpen ? 'transform: rotate(180deg)' : '', toggleGal: () => this.setState({ galOpen: !galOpen }), galOpts, lbOpen, lbSrc: cur.src, lbAlt: cur.alt, lbCount: (lb + 1) + ' / ' + N, lbClose: (e) => { if (e) e.stopPropagation(); this.setState({ lb: -1 }); }, lbPrev: step(-1), lbNext: step(1), stop: (e) => e.stopPropagation() };
+  }
+}
+DC.mount(Component, document.getElementById('dc-root'), "<div style=\"min-height: 100vh; width: 100%\">\n\n<div style=\"border-bottom: 1px solid #3A3732\">\n<header class=\"wrap\" style=\"display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px\">\n<a href=\"/\" style=\"font-family: Fraunces, Georgia, serif; font-size: 26px; color: #EDE8DF; text-decoration: none\">Frederick Uy<\/a>\n<nav class=\"nav\" aria-label=\"Main\" style=\"display: flex; gap: 28px; flex-wrap: wrap; align-items: center\">\n<a href=\"/\">Home<\/a>\n<a href=\"/about/\">About<\/a>\n<a href=\"/work/\">Work<\/a>\n<a href=\"/photography/\" style=\"color: #E3A876; text-decoration: underline; text-underline-offset: 6px\">Photography<\/a>\n<a href=\"/journal/\">Journal<\/a>\n<a href=\"#book\" style=\"background: #E3A876; color: #1C1B19; padding: 11px 17px; border-radius: 999px; font-weight: 600\">Book a session<\/a>\n<\/nav>\n<\/header>\n<\/div>\n\n<section style=\"background: #24221F\">\n<div class=\"wrap\" style=\"padding-top: 56px; padding-bottom: 66px\">\n<div style=\"display: flex; flex-direction: column; gap: 20px\">\n<p class=\"mono\" style=\"color: #E3A876\">FMU Photography<\/p>\n<h1 style=\"font-size: clamp(42px, 5vw, 68px); line-height: 1.05; color: #F4EFE6\">Real moments, in natural light.<\/h1>\n<p style=\"font-size: 19px; line-height: 1.7; color: #CFC8BC; max-width: 600px\">Portraits, graduations and proposals around Tacoma and Seattle. Lots of first-timers book with me, so I guide you with prompts, and the photos come out natural rather than stiff.<\/p>\n<\/div>\n<\/div>\n<\/section>\n\n<section id=\"full\" style=\"background: #1C1B19\">\n<div class=\"wrap\" style=\"padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 28px\">\n<div style=\"display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap\">\n<div style=\"display: flex; flex-direction: column; gap: 10px\">\n<h2 style=\"font-size: 40px; color: #F4EFE6\">{{galTitle}}<\/h2>\n<\/div>\n<div style=\"display: flex; align-items: center; gap: 14px; flex-wrap: wrap\">\n<span class=\"mono\" style=\"color: #9C958A\">Show<\/span>\n<div class=\"pick\">\n<button type=\"button\" class=\"pick-btn\" aria-haspopup=\"listbox\" aria-expanded=\"{{galOpenStr}}\" onClick=\"{{toggleGal}}\">{{galTitle}} <span aria-hidden=\"true\" class=\"caret\" style=\"{{caretStyle}}\">▾<\/span><\/button>\n<sc-if value=\"{{galOpen}}\" hint-placeholder-val=\"{{ false }}\">\n<div class=\"pick-menu\" role=\"listbox\">\n<sc-for list=\"{{galOpts}}\" as=\"o\" hint-placeholder-count=\"5\">\n<button type=\"button\" role=\"option\" aria-selected=\"{{o.sel}}\" onClick=\"{{o.pick}}\" style=\"{{o.style}}\">{{o.label}}<\/button>\n<\/sc-for>\n<\/div>\n<\/sc-if>\n<\/div>\n<a href=\"https://www.instagram.com/fmu_photography/\" target=\"_blank\" rel=\"noopener\" class=\"ig\">More on Instagram · @fmu_photography ↗<\/a>\n<\/div>\n<\/div>\n<div class=\"masonry\">\n<sc-for list=\"{{galItems}}\" as=\"g\" hint-placeholder-count=\"12\">\n<button class=\"tile\" onClick=\"{{g.open}}\" aria-label=\"View {{g.alt}} larger\"><img class=\"fade\" src=\"{{g.src}}\" alt=\"{{g.alt}}\" loading=\"lazy\" style=\"{{g.style}}\"><\/button>\n<\/sc-for>\n<\/div>\n<\/div>\n<\/section>\n\n<section id=\"process\" style=\"background: #24221F\">\n<div class=\"wrap\" style=\"padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px\">\n<div style=\"display: flex; flex-direction: column; gap: 10px\">\n<h2 style=\"font-size: 40px; color: #F4EFE6\">From first message to finished gallery<\/h2>\n<\/div>\n<div class=\"steps\" style=\"display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px\">\n<div style=\"display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px\"><span class=\"mono\" style=\"color: #E3A876\">01<\/span><h3 style=\"font-size: 24px; color: #F4EFE6\">Plan<\/h3><p style=\"font-size: 16px; line-height: 1.65; color: #CFC8BC\">We pick a spot and a time with good light, and I send a few ideas for what to wear.<\/p><\/div>\n<div style=\"display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px\"><span class=\"mono\" style=\"color: #E3A876\">02<\/span><h3 style=\"font-size: 24px; color: #F4EFE6\">Shoot<\/h3><p style=\"font-size: 16px; line-height: 1.65; color: #CFC8BC\">Relaxed and fun: music, conversation, and easy prompts so nobody has to fake a smile.<\/p><\/div>\n<div style=\"display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px\"><span class=\"mono\" style=\"color: #E3A876\">03<\/span><h3 style=\"font-size: 24px; color: #F4EFE6\">Edit<\/h3><p style=\"font-size: 16px; line-height: 1.65; color: #CFC8BC\">I hand-pick and edit every photo in my natural, warm style.<\/p><\/div>\n<div style=\"display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #E3A876; padding-top: 18px\"><span class=\"mono\" style=\"color: #E3A876\">04<\/span><h3 style=\"font-size: 24px; color: #F4EFE6\">Deliver<\/h3><p style=\"font-size: 16px; line-height: 1.65; color: #CFC8BC\">You get an online gallery in 5 days, ready to download and share.<\/p><\/div>\n<\/div>\n<\/div>\n<\/section>\n\n<section id=\"kind-words\" style=\"background: #1C1B19\">\n<div class=\"wrap\" style=\"padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px\">\n<div style=\"display: flex; flex-direction: column; gap: 10px\">\n<h2 style=\"font-size: 40px; color: #F4EFE6\">What people say<\/h2>\n<\/div>\n<div class=\"quotes\" style=\"display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start\">\n<figure class=\"quote\" style=\"margin: 0; margin-top: 0; background: #F4EFE6; color: #26231F; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px\"><span aria-hidden=\"true\" style=\"font-family: Fraunces, Georgia, serif; font-size: 64px; line-height: .6; color: #A5521E\">“<\/span><blockquote style=\"margin: 0; font-family: Fraunces, Georgia, serif; font-size: 21px; line-height: 1.5\">Frederick has an incredible eye for detail and a talent for capturing moments that feel both natural and deeply meaningful. His ability to play with light, composition, and emotion makes every shot a true work of art.<\/blockquote><figcaption style=\"display: flex; align-items: center; gap: 10px\"><span style=\"width: 24px; height: 2px; background: #A5521E\"><\/span><span class=\"mono\" style=\"color: #26231F\">Cherry Knox<\/span><span aria-label=\"5 stars\" style=\"color: #A5521E; letter-spacing: 2px; margin-left: auto\">★★★★★<\/span><\/figcaption><\/figure>\n<figure class=\"quote\" style=\"margin: 0; margin-top: 48px; background: #E3A876; color: #1C1B19; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px\"><span aria-hidden=\"true\" style=\"font-family: Fraunces, Georgia, serif; font-size: 64px; line-height: .6; color: #1C1B19\">“<\/span><blockquote style=\"margin: 0; font-family: Fraunces, Georgia, serif; font-size: 21px; line-height: 1.5\">Frederick is an amazing photographer who really knows how to guide you, especially if you’re a beginner. He made me feel comfortable with easy-to-follow prompts and poses, helping me look my best in every shot.<\/blockquote><figcaption style=\"display: flex; align-items: center; gap: 10px\"><span style=\"width: 24px; height: 2px; background: #1C1B19\"><\/span><span class=\"mono\" style=\"color: #1C1B19\">Taylor Johnson<\/span><span aria-label=\"5 stars\" style=\"color: #1C1B19; letter-spacing: 2px; margin-left: auto\">★★★★★<\/span><\/figcaption><\/figure>\n<figure class=\"quote\" style=\"margin: 0; margin-top: 0; background: #F4EFE6; color: #26231F; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px\"><span aria-hidden=\"true\" style=\"font-family: Fraunces, Georgia, serif; font-size: 64px; line-height: .6; color: #A5521E\">“<\/span><blockquote style=\"margin: 0; font-family: Fraunces, Georgia, serif; font-size: 21px; line-height: 1.5\">Working with Frederick was an incredible experience—he made us feel comfortable and brought out the best in every moment. The photos turned out stunning, capturing the essence of the day perfectly!<\/blockquote><figcaption style=\"display: flex; align-items: center; gap: 10px\"><span style=\"width: 24px; height: 2px; background: #A5521E\"><\/span><span class=\"mono\" style=\"color: #26231F\">Rachel Kay<\/span><span aria-label=\"5 stars\" style=\"color: #A5521E; letter-spacing: 2px; margin-left: auto\">★★★★★<\/span><\/figcaption><\/figure>\n<\/div>\n<\/div>\n<\/section>\n\n<section id=\"book\" style=\"background: #24221F; color: #EDE8DF\">\n<div class=\"wrap\" style=\"padding-top: 80px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px\">\n<div style=\"display: flex; flex-direction: column; gap: 10px\">\n<h2 style=\"font-size: 40px; color: #F4EFE6\">Simple pricing, edited photos included<\/h2>\n<\/div>\n<div class=\"prices\">\n<div style=\"background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px\"><p class=\"mono\" style=\"color: #9C958A\">Outdoor portraits<\/p><p style=\"font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6\">$120<\/p><p style=\"font-size: 14px; line-height: 1.7; color: #CFC8BC\">30–45 min · 15+ photos<br>$170 with a partner<\/p><\/div>\n<div style=\"background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px\"><p class=\"mono\" style=\"color: #9C958A\">Graduation<\/p><p style=\"font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6\">$100<\/p><p style=\"font-size: 14px; line-height: 1.7; color: #CFC8BC\">45 min – 1 hr · 20+ photos<br>+$40 per extra grad<\/p><\/div>\n<div style=\"background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px\"><p class=\"mono\" style=\"color: #9C958A\">Family (3–5)<\/p><p style=\"font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6\">$200<\/p><p style=\"font-size: 14px; line-height: 1.7; color: #CFC8BC\">1 hour · 25+ photos<\/p><\/div>\n<div style=\"background: #2E2B27; padding: 26px; display: flex; flex-direction: column; gap: 8px\"><p class=\"mono\" style=\"color: #9C958A\">Proposals &amp; weddings<\/p><p style=\"font-family: Fraunces, Georgia, serif; font-size: 40px; color: #F4EFE6\">$500+<\/p><p style=\"font-size: 14px; line-height: 1.7; color: #CFC8BC\">Custom coverage<br>Planning call included<\/p><\/div>\n<\/div>\n<div style=\"display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border-top: 1px solid #3A3732; padding-top: 28px\">\n<p style=\"font-size: 17px; color: #CFC8BC; max-width: 640px\">Not sure which session fits? Send a note and we’ll figure it out together.<\/p>\n<a href=\"/contact/\" style=\"background: #E3A876; color: #1C1B19; text-decoration: none; padding: 15px 26px; border-radius: 999px; font-weight: 600\">Check availability<\/a>\n<\/div>\n<\/div>\n<\/section>\n\n<section id=\"faq\" style=\"background: #1C1B19\">\n<div class=\"wrap\" style=\"padding-top: 80px; padding-bottom: 80px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: start\" >\n<div style=\"display: flex; flex-direction: column; gap: 10px\">\n<h2 style=\"font-size: 40px; color: #F4EFE6\">Good to know<\/h2>\n<\/div>\n<div style=\"border-top: 1px solid #3A3732\">\n<details style=\"border-bottom: 1px solid #3A3732; padding: 20px 0\"><summary style=\"cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px\">First time in front of a camera?<span aria-hidden=\"true\" style=\"color: #E3A876\">+<\/span><\/summary><p style=\"padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC\">You’re in good company. I’ll guide you through every pose.<\/p><\/details>\n<details style=\"border-bottom: 1px solid #3A3732; padding: 20px 0\"><summary style=\"cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px\">Where do you shoot?<span aria-hidden=\"true\" style=\"color: #E3A876\">+<\/span><\/summary><p style=\"padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC\">Around Tacoma and Seattle. Travel outside the area on request.<\/p><\/details>\n<details style=\"border-bottom: 1px solid #3A3732; padding: 20px 0\"><summary style=\"cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px\">What if it rains?<span aria-hidden=\"true\" style=\"color: #E3A876\">+<\/span><\/summary><p style=\"padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC\">Light rain can be beautiful, so if you’re up for it, I’ll bring umbrellas and we’ll lean into the mood. If it’s pouring or you’d rather stay dry, we’ll reschedule for free to the next day that works for both of us.<\/p><\/details>\n<details style=\"border-bottom: 1px solid #3A3732; padding: 20px 0\"><summary style=\"cursor: pointer; font-family: Fraunces, Georgia, serif; font-size: 22px; color: #F4EFE6; list-style: none; display: flex; justify-content: space-between; gap: 16px\">Can I bring a partner or friends?<span aria-hidden=\"true\" style=\"color: #E3A876\">+<\/span><\/summary><p style=\"padding-top: 12px; font-size: 16px; line-height: 1.65; color: #CFC8BC\">Yes. Add a partner for $50, or book a family session for 3–5 people.<\/p><\/details>\n<\/div>\n<\/div>\n<\/section>\n\n<footer class=\"wrap\" style=\"border-top: 1px solid #3A3732; padding-top: 32px; padding-bottom: 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #9C958A\">\n<span>© 2026 Frederick Uy · Tacoma, WA<\/span>\n<span style=\"display: flex; gap: 20px; flex-wrap: wrap\"><a href=\"https://www.linkedin.com/in/frederickuy/\">LinkedIn<\/a><a href=\"https://www.instagram.com/frederick.uy\">Instagram<\/a><a href=\"https://frederick-uy.medium.com/\">Medium<\/a><a href=\"/contact/\">Contact<\/a><\/span>\n<\/footer>\n\n<sc-if value=\"{{lbOpen}}\" hint-placeholder-val=\"{{ false }}\">\n<div class=\"lb\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Photo viewer\" onClick=\"{{lbClose}}\">\n<img src=\"{{lbSrc}}\" alt=\"{{lbAlt}}\" onClick=\"{{stop}}\">\n<button class=\"lbb\" style=\"top: 16px; right: 16px\" onClick=\"{{lbClose}}\" aria-label=\"Close\">×<\/button>\n<button class=\"lbb prev\" style=\"left: 20px; top: 50%; transform: translateY(-50%)\" onClick=\"{{lbPrev}}\" aria-label=\"Previous photo\">←<\/button>\n<button class=\"lbb next\" style=\"right: 20px; top: 50%; transform: translateY(-50%)\" onClick=\"{{lbNext}}\" aria-label=\"Next photo\">→<\/button>\n<p class=\"mono\" style=\"position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: #CFC8BC\">{{lbCount}}<\/p>\n<\/div>\n<\/sc-if>\n<\/div>");
+</script>
+</body>
+</html>

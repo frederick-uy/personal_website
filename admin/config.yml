@@ -1,0 +1,36 @@
+# Journal editor (Sveltia CMS). Posts are saved as markdown in content/journal,
+# then a GitHub Action rebuilds the site and Cloudflare publishes it.
+backend:
+  name: github
+  repo: frederick-uy/personal_website
+  branch: main
+  commit_messages:
+    create: "Journal: add {{slug}}"
+    update: "Journal: update {{slug}}"
+    delete: "Journal: delete {{slug}}"
+    uploadMedia: "Journal: upload {{path}}"
+
+site_url: https://frederickuy.com
+display_url: https://frederickuy.com
+media_folder: images/journal
+public_folder: /images/journal
+
+collections:
+  - name: journal
+    label: Journal
+    label_singular: Entry
+    folder: content/journal
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{date}}"
+    sortable_fields: [date, title]
+    preview_path: "journal/{{slug}}/"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD" }
+      - { name: draft, label: "Draft (hidden from the site)", widget: boolean, default: true, required: false }
+      - { name: excerpt, label: "Short summary (shows on cards)", widget: text }
+      - { name: image, label: Cover photo, widget: image, required: false }
+      - { name: image_alt, label: "Cover photo description", widget: string, required: false }
+      - { name: original_url, label: "Originally published at (optional)", widget: string, required: false }
+      - { name: body, label: Body, widget: markdown }

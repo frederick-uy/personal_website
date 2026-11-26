@@ -1,8 +1,8 @@
-# personal_website
-Personal Website - www.frederickuy.com
+# frederickuy.com
 
-This branch (`main`) is a 1:1 static copy of the original WordPress site,
-exported with Simply Static, with photos resized for the web.
-Hosted on Cloudflare Pages; every push to `main` deploys automatically.
+Static site served by Cloudflare from the repo root.
 
-The redesign lives on the `redesign` branch.
+- `_src/pages/*.dc.html` – page templates (edit these, not the generated `index.html` files)
+- `content/journal/*.md` – Journal posts (or write them at `/admin`)
+- `images/` – photos
+- `node _src/build.mjs` – regenerates every page; a GitHub Action runs this automatically on push
