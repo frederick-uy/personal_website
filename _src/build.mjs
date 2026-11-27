@@ -107,6 +107,17 @@ function parseDC(src) {
   return { title, helmet, tpl, script };
 }
 
+const SIZES = fs.existsSync(path.join(SRC, 'image-sizes.json')) ? JSON.parse(read(path.join(SRC, 'image-sizes.json'))) : {};
+function sizeImages(html) {
+  return html.replace(/<img\b([^>]*?)src="(\/images\/[^"]+)"([^>]*)>/g, (m, a, src, b) => {
+    const attrs = a + b; let out = '<img' + a + 'src="' + src + '"' + b;
+    const d = SIZES[src];
+    if (d && !/\swidth=/.test(attrs)) out += ` width="${d[0]}" height="${d[1]}"`;
+    if (!/decoding=/.test(attrs)) out += ' decoding="async"';
+    return out + '>';
+  });
+}
+
 function addMenu(tpl) {
   return tpl.replace('<nav class="nav"', '<button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span></button>\n<nav class="nav" id="site-nav"');
 }
@@ -118,8 +129,21 @@ function ssr(tpl, script) {
   return DC.render(tpl, comp.renderVals(), { handlers: [] });
 }
 
-function head({ title, description, url, image, helmet }) {
-  const img = SITE + (image || '/images/site/fred-glass.jpg');
+const SAME_AS = ['https://www.linkedin.com/in/frederickuy/', 'https://www.instagram.com/frederick.uy', 'https://frederick-uy.medium.com/', 'https://github.com/frederick-uy'];
+const PERSON = {
+  '@type': 'Person', '@id': SITE + '/#person', name: 'Frederick Uy', url: SITE + '/',
+  image: SITE + '/images/og/frederick-uy.jpg',
+  jobTitle: 'Data Engineer', description: 'Data engineer and the photographer behind FMU Photography, based in Tacoma, Washington.',
+  homeLocation: { '@type': 'Place', name: 'Tacoma, Washington' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Claflin University' },
+  knowsAbout: ['Data engineering', 'SQL', 'Python', 'AI agents', 'Workforce planning', 'Portrait photography'],
+  sameAs: SAME_AS,
+};
+const PERSON_REF = { '@type': 'Person', '@id': SITE + '/#person', name: 'Frederick Uy', url: SITE + '/' };
+const jsonld = (o) => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...o }).replace(/</g, '\\u003c')}</script>`;
+
+function head({ title, description, url, image, helmet, type = 'website', ld = [], extra = '' }) {
+  const img = SITE + (image || '/images/og/frederick-uy.jpg');
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -129,13 +153,23 @@ function head({ title, description, url, image, helmet }) {
 <meta name="description" content="${escAttr(description)}">
 <link rel="canonical" href="${SITE}${url}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1F2A24">
+<meta name="author" content="Frederick Uy">
+<meta property="og:type" content="${type}">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Frederick Uy">
 <meta property="og:title" content="${escAttr(title)}">
 <meta property="og:description" content="${escAttr(description)}">
 <meta property="og:url" content="${SITE}${url}">
 <meta property="og:image" content="${img}">
+<meta property="og:image:alt" content="${escAttr(title)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escAttr(title)}">
+<meta name="twitter:description" content="${escAttr(description)}">
+<meta name="twitter:image" content="${img}">
+${extra}${ld.map(jsonld).join('\n')}
 ${helmet.trim()}
 <link rel="stylesheet" href="/assets/site.css">
 </head>`;
@@ -151,12 +185,21 @@ function pageHTML(dc, meta, interactive) {
 }
 
 const PAGES = [
-  { file: 'home', url: '/', title: 'Frederick Uy · Data engineer and photographer', description: 'Frederick Uy is a data engineer and the photographer behind FMU Photography, based in Tacoma, Washington.' },
-  { file: 'about', url: '/about/', title: 'About · Frederick Uy', description: 'First-gen Filipino immigrant, data engineer focused on organizational health and strategy, and the photographer behind FMU Photography.' },
-  { file: 'work', url: '/work/', title: 'Work · Frederick Uy', description: 'Data engineering for headcount, hiring and strategy: case studies, experience and toolkit.' },
-  { file: 'photography', url: '/photography/', title: 'Photography · FMU Photography', description: 'Portraits, graduations and proposals around Tacoma and Seattle. Natural light, real moments.', image: '/images/gallery/portrait-01.jpg' },
-  { file: 'journal', url: '/journal/', title: 'Journal · Frederick Uy', description: 'Notes on growing up, college, internships, data and photography.' },
-  { file: 'contact', url: '/contact/', title: 'Contact · Frederick Uy', description: 'Hiring, booking a shoot, or just saying hi? Get in touch.' },
+  { file: 'home', url: '/', title: 'Frederick Uy · Data Engineer & Photographer in Tacoma, WA', description: 'Frederick Uy is a data engineer with a finance background and the photographer behind FMU Photography, based in Tacoma, Washington.',
+    ld: [{ '@graph': [PERSON, { '@type': 'WebSite', '@id': SITE + '/#website', url: SITE + '/', name: 'Frederick Uy', publisher: { '@id': SITE + '/#person' } }] }] },
+  { file: 'about', url: '/about/', title: 'About Frederick Uy · First-Gen Filipino Immigrant, Data Engineer & Photographer', description: 'The story of Frederick Uy: first-gen Filipino immigrant, Claflin University graduate, data engineer focused on organizational health and strategy, and the photographer behind FMU Photography.',
+    ld: [{ '@type': 'ProfilePage', url: SITE + '/about/', mainEntity: PERSON_REF }] },
+  { file: 'work', url: '/work/', title: 'Work · Frederick Uy, Data Engineer for Strategy, Operations & AI', description: 'Frederick Uy builds the headcount, hiring and portfolio data that executives use to understand the health of an ~11,000-person org, plus AI agents on top of it. Case studies, experience and toolkit.',
+    ld: [{ '@type': 'ProfilePage', url: SITE + '/work/', mainEntity: PERSON_REF }] },
+  { file: 'photography', url: '/photography/', title: 'FMU Photography · Portrait, Graduation & Proposal Photographer in Tacoma & Seattle', description: 'FMU Photography by Frederick Uy: natural-light portraits, graduations, families and proposals around Tacoma and Seattle. Simple pricing, edited photos included, gallery in 5 days.', image: '/images/og/fmu-photography.jpg',
+    ld: [{ '@type': 'ProfessionalService', '@id': SITE + '/photography/#business', name: 'FMU Photography', url: SITE + '/photography/', image: SITE + '/images/og/fmu-photography.jpg',
+      description: 'Natural-light portrait, graduation, family and proposal photography around Tacoma and Seattle.', priceRange: '$100–$500+',
+      areaServed: [{ '@type': 'City', name: 'Tacoma' }, { '@type': 'City', name: 'Seattle' }], address: { '@type': 'PostalAddress', addressLocality: 'Tacoma', addressRegion: 'WA', addressCountry: 'US' },
+      founder: PERSON_REF, sameAs: ['https://www.instagram.com/fmu_photography'] }] },
+  { file: 'journal', url: '/journal/', title: 'Journal · Frederick Uy', description: 'Frederick Uy writes about growing up as an immigrant, college, internships, data and photography.',
+    ld: [{ '@type': 'Blog', url: SITE + '/journal/', name: 'Frederick Uy · Journal', author: PERSON_REF }] },
+  { file: 'contact', url: '/contact/', title: 'Contact Frederick Uy · Hiring, Photo Sessions or Just Saying Hi', description: 'Get in touch with Frederick Uy about data engineering work, booking an FMU Photography session, or just to say hi.',
+    ld: [{ '@type': 'ContactPage', url: SITE + '/contact/', about: PERSON_REF }] },
 ];
 
 function homeLatest(tpl, posts) {
@@ -192,12 +235,18 @@ ${p.html}
   let tpl = sample.tpl.replace(/<article>[\s\S]*<\/article>/, () => article);
   tpl = tpl.replace(/<p style="font-size: 15px; color: #6A6258">Originally published[\s\S]*?<\/p>/, () => p.original ? `<p style="font-size: 15px; color: #6A6258">Originally published on <a href="${p.original}">Medium</a>.</p>` : '<span></span>');
   tpl = tpl.replace(/(<nav class="pn"[^>]*>)[\s\S]*?(<\/nav>)/, (_, a, b) => `${a}\n${card(newer, '← Newer', false)}${card(older, 'Older →', true)}\n${b}`);
-  const html = DC.render(tpl, {}, { handlers: [] });
-  return `${head({ title: `${p.title} · Frederick Uy`, description: p.excerpt || p.title, url: p.url, image: p.image, helmet: sample.helmet })}\n<body>\n<div id="dc-root">${html}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`;
+  const html = sizeImages(DC.render(tpl, {}, { handlers: [] }));
+  const og = fs.existsSync(path.join(ROOT, 'images/og', p.slug + '.jpg')) ? '/images/og/' + p.slug + '.jpg' : p.image;
+  const iso = p.date.toISOString().slice(0, 10);
+  const ld = [{ '@type': 'BlogPosting', headline: p.title, description: p.excerpt, datePublished: iso, url: SITE + p.url, mainEntityOfPage: SITE + p.url,
+    image: p.image ? SITE + p.image : undefined, author: PERSON_REF, publisher: PERSON_REF }];
+  const extra = `<meta property="article:published_time" content="${iso}">\n<meta property="article:author" content="Frederick Uy">\n`;
+  return `${head({ title: `${p.title} · Frederick Uy`, description: p.excerpt || p.title, url: p.url, image: og, helmet: sample.helmet, type: 'article', ld, extra })}\n<body>\n<div id="dc-root">${html}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`;
 }
 
 /* ---------------- Build ---------------- */
 const posts = loadPosts();
+const TODAY = new Date().toISOString().slice(0, 10);
 // Remove pages for posts that were deleted or turned back into drafts
 const jdir = path.join(ROOT, 'journal');
 if (fs.existsSync(jdir)) for (const d of fs.readdirSync(jdir)) {
@@ -206,7 +255,7 @@ if (fs.existsSync(jdir)) for (const d of fs.readdirSync(jdir)) {
 const urls = [];
 for (const pg of PAGES) {
   const dc = parseDC(read(path.join(SRC, 'pages', pg.file + '.dc.html')));
-  dc.tpl = addMenu(dc.tpl);
+  dc.tpl = sizeImages(addMenu(dc.tpl));
   if (pg.file === 'home') dc.tpl = homeLatest(dc.tpl, posts);
   if (pg.file === 'journal') dc.script = journalData(dc.script, posts);
   const interactive = /\{\{/.test(dc.tpl);
@@ -214,8 +263,8 @@ for (const pg of PAGES) {
   urls.push(pg.url);
 }
 const sample = parseDC(read(path.join(SRC, 'pages', '_post-sample.dc.html')));
-sample.tpl = addMenu(sample.tpl);
-posts.forEach((p, i) => { write(path.join(p.url, 'index.html'), postPage(sample, p, posts[i - 1], posts[i + 1])); urls.push(p.url); });
+sample.tpl = sizeImages(addMenu(sample.tpl));
+posts.forEach((p, i) => { write(path.join(p.url, 'index.html'), postPage(sample, p, posts[i - 1], posts[i + 1])); urls.push({ loc: p.url, lastmod: p.date.toISOString().slice(0, 10) }); });
 
 // 404 page, built from the post layout
 const notFound = sample.tpl.replace(/<article>[\s\S]*<\/article>/, `<section class="read" style="padding-top: 96px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 20px">
@@ -224,11 +273,11 @@ const notFound = sample.tpl.replace(/<article>[\s\S]*<\/article>/, `<section cla
 <p style="font-size: 18px; line-height: 1.7; color: #4F4942">The link may be old or mistyped. Here are some good places to pick back up:</p>
 <p style="font-size: 18px; display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600"><a href="/">Home</a><a href="/work/">Work</a><a href="/photography/">Photography</a><a href="/journal/">Journal</a></p>
 </section>`).replace(/<section class="read" style="padding-bottom: 86px[\s\S]*?<\/section>/, '');
-write('404.html', `${head({ title: 'Page not found · Frederick Uy', description: 'This page could not be found.', url: '/404', helmet: sample.helmet })}\n<body>\n<div id="dc-root">${DC.render(notFound, {}, { handlers: [] })}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`);
+write('404.html', `${head({ title: 'Page not found · Frederick Uy', description: 'This page could not be found.', url: '/404', helmet: sample.helmet, extra: '<meta name="robots" content="noindex">\n' })}\n<body>\n<div id="dc-root">${DC.render(notFound, {}, { handlers: [] })}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`);
 
 for (const f of fs.readdirSync(path.join(SRC, 'static'))) fs.copyFileSync(path.join(SRC, 'static', f), path.join(ROOT, f));
 fs.mkdirSync(path.join(ROOT, 'assets'), { recursive: true });
 fs.copyFileSync(path.join(SRC, 'runtime.js'), path.join(ROOT, 'assets/runtime.js'));
 for (const f of ['site.css', 'site.js']) fs.copyFileSync(path.join(SRC, 'assets', f), path.join(ROOT, 'assets', f));
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}\n</urlset>\n`);
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => typeof u === 'string' ? `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod></url>` : `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 console.log(`Built ${PAGES.length} pages and ${posts.length} posts.`);

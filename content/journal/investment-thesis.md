@@ -1,8 +1,8 @@
 ---
 title: "3 Advices On Creating A Credible Investment Thesis"
 date: 2020-02-20
-image: /images/site/claflin.jpg
-image_alt: "3 Advices On Creating A Credible Investment Thesis"
+image: /images/site/claflin-university-sign.webp
+image_alt: "Claflin University sign surrounded by flowers"
 excerpt: "What my HBCUvc fellowship taught me about building an investment thesis."
 original_url: https://frederick-uy.medium.com/3-advices-on-creating-a-credible-investment-thesis-2c05c61f45bb
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Internship at Oracle Amidst a Global Pandemic"
 date: 2020-08-13
-image: /images/journal/oracle-setup.jpg
+image: /images/journal/remote-internship-desk-setup.webp
 image_alt: "Home desk setup with laptops during a remote internship"
 excerpt: "Lessons from a remote summer as a Field Marketing intern at Oracle NetSuite."
 original_url: https://frederick-uy.medium.com/internship-at-oracle-amidst-a-global-pandemic-5c55e875f93c

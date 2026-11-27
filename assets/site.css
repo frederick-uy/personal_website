@@ -30,3 +30,6 @@
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* Image size hints never stretch a photo: page styles still decide the shape. */
+:where(img[width][height]){height:auto}

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://frederickuy.com/</loc></url>
-  <url><loc>https://frederickuy.com/about/</loc></url>
-  <url><loc>https://frederickuy.com/work/</loc></url>
-  <url><loc>https://frederickuy.com/photography/</loc></url>
-  <url><loc>https://frederickuy.com/journal/</loc></url>
-  <url><loc>https://frederickuy.com/contact/</loc></url>
-  <url><loc>https://frederickuy.com/journal/2020-year-in-review/</loc></url>
-  <url><loc>https://frederickuy.com/journal/oracle-internship/</loc></url>
-  <url><loc>https://frederickuy.com/journal/investment-thesis/</loc></url>
-  <url><loc>https://frederickuy.com/journal/2019-year-in-review/</loc></url>
-  <url><loc>https://frederickuy.com/journal/latinx-conferences/</loc></url>
+  <url><loc>https://frederickuy.com/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://frederickuy.com/about/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://frederickuy.com/work/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://frederickuy.com/photography/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://frederickuy.com/journal/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://frederickuy.com/contact/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://frederickuy.com/journal/2020-year-in-review/</loc><lastmod>2021-01-01</lastmod></url>
+  <url><loc>https://frederickuy.com/journal/oracle-internship/</loc><lastmod>2020-08-13</lastmod></url>
+  <url><loc>https://frederickuy.com/journal/investment-thesis/</loc><lastmod>2020-02-20</lastmod></url>
+  <url><loc>https://frederickuy.com/journal/2019-year-in-review/</loc><lastmod>2020-01-01</lastmod></url>
+  <url><loc>https://frederickuy.com/journal/latinx-conferences/</loc><lastmod>2019-12-07</lastmod></url>
 </urlset>

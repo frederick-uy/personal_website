@@ -1,7 +1,7 @@
 ---
 title: "Conferences and Events for Latinx Student Entrepreneurs"
 date: 2019-12-07
-image: /images/journal/latinx.jpg
+image: /images/journal/latinx-student-entrepreneurs.webp
 image_alt: "Orange and red triangle pattern with the word LATINX"
 excerpt: "Why building connections matters, and four events worth attending."
 original_url: https://frederick-uy.medium.com/conferences-and-events-for-latinx-student-entrepreneurs-46471c14f87

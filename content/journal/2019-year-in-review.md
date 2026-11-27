@@ -1,7 +1,7 @@
 ---
 title: "2019: The Year in Review"
 date: 2020-01-01
-image: /images/journal/y19-oxford.jpg
+image: /images/journal/radcliffe-camera-oxford.webp
 image_alt: "The Radcliffe Camera in Oxford under a bright sky"
 excerpt: "Studying abroad, starting FMU Photography, and a year of stepping out of my comfort zone."
 original_url: https://frederick-uy.medium.com/2019-the-year-in-review-45b98a7582a9
@@ -27,18 +27,18 @@ My most memorable memory happened around 2 am. As a photographer, I love taking 
 
 But, all of a sudden, the next thing I know, I can hear their voices. Their loud shouts filling the empty streets of Westminster.
 
-![The Radcliffe Camera in Oxford under a bright sky](/images/journal/y19-oxford.jpg "England, 2019")
+![The Radcliffe Camera in Oxford under a bright sky](/images/journal/radcliffe-camera-oxford.webp "England, 2019")
 ## Travelling to Belfast, Ireland and Edinburgh, Scotland
 During my time at United Kingdom, my cohort was also granted the opportunity to visit Belfast, Ireland where we learned about the role that Northern Ireland have in the potential event that has been going on for so long. You guessed it… Brexit.
 
 Belfast is a really great place that is full of heartwarming stories and streets that speaks memories to you as you walk by, looking at the portraying images on the walls. Oh yeah, we visited the congressional building, Titanic museum, and the freedom wall! But, most of all, we went hiking! Wew! Another step outside of my own comfort zone!!
 
-![Fellows standing in front of a Frederick Douglass mural in Belfast](/images/journal/y19-belfast.jpg "Belfast, 2019")
+![Fellows standing in front of a Frederick Douglass mural in Belfast](/images/journal/frederick-douglass-fellows-belfast.webp "Belfast, 2019")
 On the last week of July, my friends and I were planning of going to Paris, because duhh, we were already in United Kingdom and like the plane ticket is only around $150.00. Unfortunately, since I was still a green card holder, and I didn’t have the right visa to enter Europe, I was not able to go with them. It was a very sad moment, but Daniela Quinones, a FDGF fellow also, and I decided to go to Edinburgh, Scotland instead.
 
 It was still a very fun trip, the accent of Scottish people are so hard to understand that we were literally just nodding our head when we went to restaurants or our AirBnbs. Yep, you guessed it, we did more hiking!! Another step outside of my comfort zone!
 
-![Arthur’s Seat rising above Edinburgh](/images/journal/y19-edinburgh.jpg "Edinburgh, Scotland 2019")
+![Arthur’s Seat rising above Edinburgh](/images/journal/arthurs-seat-edinburgh.webp "Edinburgh, Scotland 2019")
 ## Professional Development and Conferences Attended
 During the school year, I was very privileged to be selected by various companies to represent my university at professional development conferences. It was great having to see role models and professionals who were so willing to volunteer and speak at these conferences and continuing to inspire students. A few of the conferences that I attended includes:
 - DHG and UNC Chapel Hill Accounting Mentorship Program
@@ -51,13 +51,13 @@ During the school year, I was very privileged to be selected by various companie
 
 Additionally, it was very cool to see Nancy Pelosi in action during the National Fiscal Summit! It was very intense to witness political backfiring conversations and learning how to respond effectively! Ooof! Talk about stepping out of my comfort zone!
 
-![Frederick in a Claflin hoodie in front of the Washington Monument](/images/journal/y19-dc.jpg "Washington, D.C.")
+![Frederick in a Claflin hoodie in front of the Washington Monument](/images/journal/frederick-uy-washington-monument.webp "Washington, D.C.")
 ## Leadership and Volunteer Experiences
 Not only 2019 was a year full of catching flights to different conferences for free, it was also a year full of community service, volunteering, and leadership development!
 
 I was elected as the President of Global Student Organization where I had the opportunity to represent the international students at Claflin University and hold events that promotes cultural awareness. I was also the Outreach Leader for Net Impact’s Up to Us Competition where my team and I mobilized over 500 students on my campus to advocate for a sustainable fiscal future by creating an informative and creative campaign. I also served as the Fundraising Chair for National Association of Black Accountants and a general member of National Society of Black Engineers. Just recently, I was also selected as a HBCU Venture Capital Fellow where I get to receive hands on training from skilled venture professionals, in the hope of advocating entrepreneurship in minority serving institutions.
 
-![Frederick leading a student meeting around a table](/images/journal/y19-gso.jpg "Leadership and volunteer experiences")
+![Frederick leading a student meeting around a table](/images/journal/frederick-uy-student-meeting.webp "Leadership and volunteer experiences")
 ## Hackathons, Case Competitions, and Research Symposium
 In addition to my travels and involvement in my community as a student leader, I was also very fortunate to win several awards at different academic competitions!
 
@@ -67,7 +67,7 @@ During early January, my team and I entered a Hackathon at Clemson University, C
 
 Fun fact: My team won the best beginner award!
 
-![Claflin team with medals at CUHackIt](/images/journal/y19-hackathon.jpg "CUHackIt at Clemson University")
+![Claflin team with medals at CUHackIt](/images/journal/claflin-cuhackit-hackathon.webp "CUHackIt at Clemson University")
 In 2019, I also led a team of talented students to enter our first business plan competition! It was a very tedious process that involves a lot of financial analysis, making comprehensive business models, and researching various industries. Then, we presented our idea to a panel of well-established market leaders and CEO of different startup companies!
 
 Fun fact: This was our first time of entering a business plan competition and we won 2nd place with prize money of $3,000! Definitely not bad for our first time!
@@ -81,5 +81,5 @@ As usual, being my stubborn self, I did not listen to them until this year, wher
 
 I started doing photography for fun since 2016 and have always loved it. But, now, I decided to take another step out of my comfort zone and actually start professionally taking pictures! So far, I am very pleased to say that I had more than 30 clients on my first year and I am looking forward for another year of growth, prosperity, and success!
 
-![Two Canon cameras and three lenses on a desk](/images/journal/y19-cameras.jpg "The gear behind FMU Photography")
+![Two Canon cameras and three lenses on a desk](/images/journal/canon-cameras-and-lenses.webp "The gear behind FMU Photography")
 Lastly, I would just like to express my biggest gratitude to my family, friends, and my Tinder, Bumble, and Hinge dates who have supported me to be the person I am today. Oh yeah, special mention to my cuddly teddy bears who are always there for me :P
