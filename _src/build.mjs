@@ -4,12 +4,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { createRequire } from 'node:module';
+import crypto from 'node:crypto';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SRC = path.join(ROOT, '_src');
 const require = createRequire(import.meta.url);
 const DC = require(path.join(SRC, 'runtime.js'));
 const SITE = 'https://frederickuy.com';
+// Version stamps: the file name changes whenever the file changes, so browsers never use a stale copy.
+const ver = (f) => crypto.createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 10);
+const V = { css: ver(path.join(SRC, 'assets/site.css')), js: ver(path.join(SRC, 'assets/site.js')), rt: ver(path.join(SRC, 'runtime.js')) };
 const read = (p) => fs.readFileSync(p, 'utf8');
 const write = (rel, s) => { const p = path.join(ROOT, rel); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, s); };
 const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -171,7 +175,7 @@ function head({ title, description, url, image, helmet, type = 'website', ld = [
 <meta name="twitter:image" content="${img}">
 ${extra}${ld.map(jsonld).join('\n')}
 ${helmet.trim()}
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v=${V.css}">
 </head>`;
 }
 
@@ -179,9 +183,9 @@ function pageHTML(dc, meta, interactive) {
   const body = ssr(dc.tpl, dc.script);
   let js = '';
   if (interactive) {
-    js = `\n<script src="/assets/runtime.js"></script>\n<script>\nvar DCLogic = DC.DCLogic;\n${dc.script.trim()}\nDC.mount(Component, document.getElementById('dc-root'), ${JSON.stringify(dc.tpl).replace(/<\//g, '<\\/')});\n</script>`;
+    js = `\n<script src="/assets/runtime.js?v=${V.rt}"></script>\n<script>\nvar DCLogic = DC.DCLogic;\n${dc.script.trim()}\nDC.mount(Component, document.getElementById('dc-root'), ${JSON.stringify(dc.tpl).replace(/<\//g, '<\\/')});\n</script>`;
   }
-  return `${head({ ...meta, helmet: dc.helmet })}\n<body>\n<div id="dc-root">${body}</div>${js}\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`;
+  return `${head({ ...meta, helmet: dc.helmet })}\n<body>\n<div id="dc-root">${body}</div>${js}\n<script src="/assets/site.js?v=${V.js}"></script>\n</body>\n</html>\n`;
 }
 
 const PAGES = [
@@ -241,7 +245,7 @@ ${p.html}
   const ld = [{ '@type': 'BlogPosting', headline: p.title, description: p.excerpt, datePublished: iso, url: SITE + p.url, mainEntityOfPage: SITE + p.url,
     image: p.image ? SITE + p.image : undefined, author: PERSON_REF, publisher: PERSON_REF }];
   const extra = `<meta property="article:published_time" content="${iso}">\n<meta property="article:author" content="Frederick Uy">\n`;
-  return `${head({ title: `${p.title} · Frederick Uy`, description: p.excerpt || p.title, url: p.url, image: og, helmet: sample.helmet, type: 'article', ld, extra })}\n<body>\n<div id="dc-root">${html}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`;
+  return `${head({ title: `${p.title} · Frederick Uy`, description: p.excerpt || p.title, url: p.url, image: og, helmet: sample.helmet, type: 'article', ld, extra })}\n<body>\n<div id="dc-root">${html}</div>\n<script src="/assets/site.js?v=${V.js}"></script>\n</body>\n</html>\n`;
 }
 
 /* ---------------- Build ---------------- */
@@ -273,7 +277,7 @@ const notFound = sample.tpl.replace(/<article>[\s\S]*<\/article>/, `<section cla
 <p style="font-size: 18px; line-height: 1.7; color: #4F4942">The link may be old or mistyped. Here are some good places to pick back up:</p>
 <p style="font-size: 18px; display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600"><a href="/">Home</a><a href="/work/">Work</a><a href="/photography/">Photography</a><a href="/journal/">Journal</a></p>
 </section>`).replace(/<section class="read" style="padding-bottom: 86px[\s\S]*?<\/section>/, '');
-write('404.html', `${head({ title: 'Page not found · Frederick Uy', description: 'This page could not be found.', url: '/404', helmet: sample.helmet, extra: '<meta name="robots" content="noindex">\n' })}\n<body>\n<div id="dc-root">${DC.render(notFound, {}, { handlers: [] })}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`);
+write('404.html', `${head({ title: 'Page not found · Frederick Uy', description: 'This page could not be found.', url: '/404', helmet: sample.helmet, extra: '<meta name="robots" content="noindex">\n' })}\n<body>\n<div id="dc-root">${DC.render(notFound, {}, { handlers: [] })}</div>\n<script src="/assets/site.js?v=${V.js}"></script>\n</body>\n</html>\n`);
 
 for (const f of fs.readdirSync(path.join(SRC, 'static'))) fs.copyFileSync(path.join(SRC, 'static', f), path.join(ROOT, f));
 fs.mkdirSync(path.join(ROOT, 'assets'), { recursive: true });
