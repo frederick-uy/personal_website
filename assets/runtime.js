@@ -26,6 +26,7 @@
     }
   }
 
+  var KEEP = ['rv', 'in', 'open'];
   // ctx.handlers collects functions bound to on* attributes.
   function render(tpl, scope, ctx) {
     var out = '', i = 0;
@@ -70,8 +71,16 @@
     if (from.nodeType === 3 || from.nodeType === 8) { if (from.nodeValue !== to.nodeValue) from.nodeValue = to.nodeValue; return; }
     if (from.nodeType !== 1) return;
     var a, i;
+    // Classes and styles added by the page's own scripts (reveal-on-scroll, open menu,
+    // aria-expanded on the menu button) survive re-renders.
+    var keep = KEEP.filter(function (c) { return from.classList && from.classList.contains(c); });
+    var delay = from.style && from.style.transitionDelay;
+    var expanded = from.classList && from.classList.contains('menu-btn') ? from.getAttribute('aria-expanded') : null;
     for (i = from.attributes.length - 1; i >= 0; i--) { a = from.attributes[i]; if (!to.hasAttribute(a.name) && !(a.name === 'open' && from.nodeName === 'DETAILS')) from.removeAttribute(a.name); }
     for (i = 0; i < to.attributes.length; i++) { a = to.attributes[i]; if (from.getAttribute(a.name) !== a.value) from.setAttribute(a.name, a.value); }
+    keep.forEach(function (c) { from.classList.add(c); });
+    if (delay && keep.indexOf('rv') > -1 && !from.style.transitionDelay) from.style.transitionDelay = delay;
+    if (expanded) from.setAttribute('aria-expanded', expanded);
     var fc = from.childNodes, tc = to.childNodes;
     for (i = 0; i < tc.length; i++) { if (i < fc.length) morph(fc[i], tc[i]); else from.appendChild(tc[i].cloneNode(true)); }
     while (fc.length > tc.length) from.removeChild(fc[fc.length - 1]);

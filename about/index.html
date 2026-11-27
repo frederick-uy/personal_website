@@ -50,6 +50,7 @@ a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ea
 @media (max-width:600px){.facts{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:860px){.ledger{grid-template-columns:minmax(0,1fr) !important}.ledger li{grid-template-columns:minmax(0,1fr) !important;gap:6px !important}}
 </style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <div id="dc-root"><div style="min-height: 100vh; width: 100%">
@@ -57,7 +58,8 @@ a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ea
 <div style="border-bottom: 1px solid #DCD3C3">
 <header class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px">
 <a href="/" style="font-family: Fraunces, Georgia, serif; font-size: 26px; color: #26231F; text-decoration: none; letter-spacing: -0.01em">Frederick Uy</a>
-<nav class="nav" aria-label="Main" style="display: flex; gap: 28px; flex-wrap: wrap; align-items: center">
+<button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span></button>
+<nav class="nav" id="site-nav" aria-label="Main" style="display: flex; gap: 28px; flex-wrap: wrap; align-items: center">
 <a href="/">Home</a>
 <a href="/about/" style="color: #2E4A3B; text-decoration: underline; text-underline-offset: 6px">About</a>
 <a href="/work/">Work</a>
@@ -158,5 +160,6 @@ a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ea
 </footer>
 
 </div></div>
+<script src="/assets/site.js"></script>
 </body>
 </html>

@@ -107,6 +107,10 @@ function parseDC(src) {
   return { title, helmet, tpl, script };
 }
 
+function addMenu(tpl) {
+  return tpl.replace('<nav class="nav"', '<button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span></button>\n<nav class="nav" id="site-nav"');
+}
+
 function ssr(tpl, script) {
   const ctx = vm.createContext({ DCLogic: DC.DCLogic, window: { addEventListener() {}, matchMedia: () => ({ matches: false }) }, console });
   const Component = vm.runInContext(script + '\n;Component', ctx);
@@ -133,6 +137,7 @@ function head({ title, description, url, image, helmet }) {
 <meta property="og:image" content="${img}">
 <meta name="twitter:card" content="summary_large_image">
 ${helmet.trim()}
+<link rel="stylesheet" href="/assets/site.css">
 </head>`;
 }
 
@@ -142,7 +147,7 @@ function pageHTML(dc, meta, interactive) {
   if (interactive) {
     js = `\n<script src="/assets/runtime.js"></script>\n<script>\nvar DCLogic = DC.DCLogic;\n${dc.script.trim()}\nDC.mount(Component, document.getElementById('dc-root'), ${JSON.stringify(dc.tpl).replace(/<\//g, '<\\/')});\n</script>`;
   }
-  return `${head({ ...meta, helmet: dc.helmet })}\n<body>\n<div id="dc-root">${body}</div>${js}\n</body>\n</html>\n`;
+  return `${head({ ...meta, helmet: dc.helmet })}\n<body>\n<div id="dc-root">${body}</div>${js}\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`;
 }
 
 const PAGES = [
@@ -188,7 +193,7 @@ ${p.html}
   tpl = tpl.replace(/<p style="font-size: 15px; color: #6A6258">Originally published[\s\S]*?<\/p>/, () => p.original ? `<p style="font-size: 15px; color: #6A6258">Originally published on <a href="${p.original}">Medium</a>.</p>` : '<span></span>');
   tpl = tpl.replace(/(<nav class="pn"[^>]*>)[\s\S]*?(<\/nav>)/, (_, a, b) => `${a}\n${card(newer, '← Newer', false)}${card(older, 'Older →', true)}\n${b}`);
   const html = DC.render(tpl, {}, { handlers: [] });
-  return `${head({ title: `${p.title} · Frederick Uy`, description: p.excerpt || p.title, url: p.url, image: p.image, helmet: sample.helmet })}\n<body>\n<div id="dc-root">${html}</div>\n</body>\n</html>\n`;
+  return `${head({ title: `${p.title} · Frederick Uy`, description: p.excerpt || p.title, url: p.url, image: p.image, helmet: sample.helmet })}\n<body>\n<div id="dc-root">${html}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`;
 }
 
 /* ---------------- Build ---------------- */
@@ -201,6 +206,7 @@ if (fs.existsSync(jdir)) for (const d of fs.readdirSync(jdir)) {
 const urls = [];
 for (const pg of PAGES) {
   const dc = parseDC(read(path.join(SRC, 'pages', pg.file + '.dc.html')));
+  dc.tpl = addMenu(dc.tpl);
   if (pg.file === 'home') dc.tpl = homeLatest(dc.tpl, posts);
   if (pg.file === 'journal') dc.script = journalData(dc.script, posts);
   const interactive = /\{\{/.test(dc.tpl);
@@ -208,6 +214,7 @@ for (const pg of PAGES) {
   urls.push(pg.url);
 }
 const sample = parseDC(read(path.join(SRC, 'pages', '_post-sample.dc.html')));
+sample.tpl = addMenu(sample.tpl);
 posts.forEach((p, i) => { write(path.join(p.url, 'index.html'), postPage(sample, p, posts[i - 1], posts[i + 1])); urls.push(p.url); });
 
 // 404 page, built from the post layout
@@ -217,10 +224,11 @@ const notFound = sample.tpl.replace(/<article>[\s\S]*<\/article>/, `<section cla
 <p style="font-size: 18px; line-height: 1.7; color: #4F4942">The link may be old or mistyped. Here are some good places to pick back up:</p>
 <p style="font-size: 18px; display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600"><a href="/">Home</a><a href="/work/">Work</a><a href="/photography/">Photography</a><a href="/journal/">Journal</a></p>
 </section>`).replace(/<section class="read" style="padding-bottom: 86px[\s\S]*?<\/section>/, '');
-write('404.html', `${head({ title: 'Page not found · Frederick Uy', description: 'This page could not be found.', url: '/404', helmet: sample.helmet })}\n<body>\n<div id="dc-root">${DC.render(notFound, {}, { handlers: [] })}</div>\n</body>\n</html>\n`);
+write('404.html', `${head({ title: 'Page not found · Frederick Uy', description: 'This page could not be found.', url: '/404', helmet: sample.helmet })}\n<body>\n<div id="dc-root">${DC.render(notFound, {}, { handlers: [] })}</div>\n<script src="/assets/site.js"></script>\n</body>\n</html>\n`);
 
 for (const f of fs.readdirSync(path.join(SRC, 'static'))) fs.copyFileSync(path.join(SRC, 'static', f), path.join(ROOT, f));
 fs.mkdirSync(path.join(ROOT, 'assets'), { recursive: true });
 fs.copyFileSync(path.join(SRC, 'runtime.js'), path.join(ROOT, 'assets/runtime.js'));
+for (const f of ['site.css', 'site.js']) fs.copyFileSync(path.join(SRC, 'assets', f), path.join(ROOT, 'assets', f));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 console.log(`Built ${PAGES.length} pages and ${posts.length} posts.`);
