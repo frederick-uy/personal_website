@@ -33,3 +33,12 @@
 
 /* Image size hints never stretch a photo: page styles still decide the shape. */
 :where(img[width][height]){height:auto}
+
+/* ---------- Back to top ---------- */
+.to-top{position:fixed;right:24px;bottom:24px;z-index:50;width:48px;height:48px;border-radius:999px;border:1px solid rgba(244,239,230,.25);background:#26231F;color:#F4EFE6;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.18);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,background .2s ease}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:#2E4A3B}
+.to-top:focus-visible{outline:2px solid #E3A876;outline-offset:3px}
+.to-top svg{width:20px;height:20px}
+@media (max-width:760px){.to-top{right:16px;bottom:16px;width:44px;height:44px}}
+@media (prefers-reduced-motion:reduce){.to-top{transition:none}}

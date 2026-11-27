@@ -46,6 +46,27 @@
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', setup); else setup();
 
+  // ---- Back to top ----
+  // Lives outside the page's own markup so page re-renders never remove it.
+  function addTopButton() {
+    if (doc.querySelector('.to-top')) return;
+    var b = doc.createElement('button');
+    b.type = 'button'; b.className = 'to-top'; b.setAttribute('aria-label', 'Back to top'); b.tabIndex = -1;
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    b.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var first = doc.querySelector('header a'); if (first) first.focus({ preventScroll: true });
+    });
+    doc.body.appendChild(b);
+    var shown = false;
+    function onScroll() {
+      var s = window.scrollY > Math.max(600, window.innerHeight * 0.8);
+      if (s !== shown) { shown = s; b.classList.toggle('show', s); b.tabIndex = s ? 0 : -1; }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  }
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', addTopButton); else addTopButton();
+
   // ---- Swipe: photo viewer and carousels ----
   var sx = 0, sy = 0, start = null;
   doc.addEventListener('touchstart', function (e) {
