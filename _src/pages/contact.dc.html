@@ -101,7 +101,7 @@ img{transition:opacity .3s ease}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
 class Component extends DCLogic {
-  constructor(props) { super(props); this.state = { mode: 'hire', sent: false }; }
+  constructor(props) { super(props); const q = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('topic') : null; this.state = { mode: ['hire', 'shoot', 'hi'].includes(q) ? q : 'hire', sent: false }; }
   renderVals() {
     const m = this.state.mode;
     const defs = [['hire', 'Hiring'], ['shoot', 'Booking a shoot'], ['hi', 'Just saying hi']];

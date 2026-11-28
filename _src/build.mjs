@@ -159,6 +159,7 @@ function head({ title, description, url, image, helmet, type = 'website', ld = [
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Frederick Uy · Journal" href="/journal/feed.xml">
 <meta name="theme-color" content="#1F2A24">
 <meta name="author" content="Frederick Uy">
 <meta property="og:type" content="${type}">
@@ -283,5 +284,27 @@ for (const f of fs.readdirSync(path.join(SRC, 'static'))) fs.copyFileSync(path.j
 fs.mkdirSync(path.join(ROOT, 'assets'), { recursive: true });
 fs.copyFileSync(path.join(SRC, 'runtime.js'), path.join(ROOT, 'assets/runtime.js'));
 for (const f of ['site.css', 'site.js']) fs.copyFileSync(path.join(SRC, 'assets', f), path.join(ROOT, 'assets', f));
+// RSS feed of Journal entries (newsletter services read this to email new posts)
+const x = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const abs = (h) => h.replace(/(src|href)="\//g, '$1="' + SITE + '/');
+write('journal/feed.xml', `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Frederick Uy · Journal</title>
+<link>${SITE}/journal/</link>
+<atom:link href="${SITE}/journal/feed.xml" rel="self" type="application/rss+xml"/>
+<description>Notes on growing up, college, internships, data and photography.</description>
+<language>en-us</language>
+${posts.map((p) => `<item>
+<title>${x(p.title)}</title>
+<link>${SITE}${p.url}</link>
+<guid isPermaLink="true">${SITE}${p.url}</guid>
+<pubDate>${p.date.toUTCString()}</pubDate>
+<description>${x(p.excerpt)}</description>
+<content:encoded><![CDATA[${p.image ? `<p><img src="${SITE}${p.image}" alt="${escAttr(p.imageAlt)}"></p>` : ''}${abs(p.html).replace(/]]>/g, ']]&gt;')}]]></content:encoded>
+</item>`).join('\n')}
+</channel>
+</rss>
+`);
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => typeof u === 'string' ? `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod></url>` : `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 console.log(`Built ${PAGES.length} pages and ${posts.length} posts.`);
